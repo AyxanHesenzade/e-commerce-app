@@ -1,0 +1,36 @@
+.cart-container {
+  padding: 20px;
+}
+
+.cart-title {
+  margin-bottom: 20px;
+}
+
+.cart-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cart-card {
+  width: 300px !important; /* Ant Design Card default width override */
+}
+
+.cart-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.cart-quantity-info {
+  margin-top: 10px;
+}
+
+.cart-total-price {
+  margin-top: 20px;
+}
+
+.empty-cart {
+  font-size: 18px;
+  color: #666;
+}
+

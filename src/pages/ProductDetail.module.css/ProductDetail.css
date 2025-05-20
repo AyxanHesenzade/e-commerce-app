@@ -1,0 +1,20 @@
+.productDetailContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.productCard {
+  width: 400px;
+}
+
+.productImage {
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.productDescription p {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}

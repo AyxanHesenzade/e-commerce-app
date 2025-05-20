@@ -1,0 +1,34 @@
+.products-container {
+  padding: 20px;
+}
+
+.products-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.product-link {
+  text-decoration: none;
+}
+
+.product-card {
+  width: 300px !important; /* Ant Design Card default width override */
+}
+
+.product-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-title {
+  margin-bottom: 8px;
+}
+
+.product-price,
+.product-description,
+.product-category {
+  margin: 4px 0;
+  color: #333;
+}
