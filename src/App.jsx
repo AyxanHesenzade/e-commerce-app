@@ -35,6 +35,8 @@ function App() {
                 <Products />
               </PrivateRoute>
             }
+
+            
           />
 
           {/* Məhsul detalları */}
@@ -55,7 +57,9 @@ function App() {
                 <Cart />
               </PrivateRoute>
             }
+ 
           />
+
         </Routes>
       </CartProvider>
     </AuthProvider>

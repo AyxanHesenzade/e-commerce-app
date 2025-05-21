@@ -1,5 +1,7 @@
 .products-container {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .products-cards {
@@ -7,6 +9,7 @@
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 20px;
+  justify-content: center;
 }
 
 .product-link {
@@ -32,4 +35,13 @@
 .product-category {
   margin: 4px 0;
   color: #333;
+}
+
+.priceP{
+  color: #4096ff;
+}
+
+.product-card {
+  border: 1px solid #4096ff !important;
+  border-radius: 10px; /* İstəsən, radius da ver */
 }

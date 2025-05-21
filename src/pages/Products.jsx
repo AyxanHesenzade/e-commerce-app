@@ -89,7 +89,7 @@ function Products() {
               title={product.title}
               description={
                 <>
-                  <p><strong>Qiymət:</strong> ${product.price}</p>
+                  <p className="priceP"><strong>Qiymət:</strong> ${product.price}</p>
                   <p><em>Kateqoriya:</em> {product.category?.name}</p>
                 </>
               }

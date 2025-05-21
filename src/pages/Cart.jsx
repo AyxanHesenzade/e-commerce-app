@@ -37,8 +37,8 @@ function Cart() {
           >
             <Meta title={item.title} description={`Qiymət: $${item.price}`} />
             <div className="cart-quantity-info">
-              <p><strong>Miqdar:</strong> {item.quantity}</p>
-              <p><strong>Ümumi:</strong> ${(item.price * item.quantity).toFixed(2)}</p>
+              <p className='priceP'><strong>Miqdar:</strong> {item.quantity}</p>
+              <p className='priceP'><strong>Ümumi:</strong> ${(item.price * item.quantity).toFixed(2)}</p>
             </div>
           </Card>
         ))}

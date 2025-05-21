@@ -43,7 +43,7 @@ function ProductDetail() {
           description={
             <div className="productDescription">
               <p>{product.description}</p>
-              <p><strong>Qiymət:</strong> ${product.price}</p>
+              <p  className='priceP'><strong>Qiymət:</strong> ${product.price}</p>
               <p><em>Kateqoriya:</em> {product.category?.name}</p>
             </div>
           }
