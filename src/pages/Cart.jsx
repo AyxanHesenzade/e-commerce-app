@@ -44,7 +44,7 @@ function Cart() {
         ))}
       </div>
 
-      <h3 className="cart-total-price">Ümumi Qiymət: ${totalPrice.toFixed(2)}</h3>
+      <h4 className="cart-total-price">Ümumi Qiymət: ${totalPrice.toFixed(2)}</h4>
     </div>
   );
 }

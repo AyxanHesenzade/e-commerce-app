@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Card } from 'antd';
+import { Menu, Card, Button } from 'antd';
 import { AppstoreOutlined } from '@ant-design/icons';
+import { useCart } from '../context/CartContext.jsx';
 
 import './ProductsStyle/Products.css';  // CSS faylını import et
 
@@ -11,6 +12,7 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { addToCart } = useCart(); // 🛒 Səbətə əlavə funksiyası
 
   // KATEQORİYALAR
   useEffect(() => {
@@ -64,24 +66,35 @@ function Products() {
       {/* MƏHSUL KARTLARI */}
       <div className="products-cards">
         {products.map((product) => (
-          <Link to={`/products/${product.id}`} key={product.id} className="product-link">
-            <Card
-              hoverable
-              className="product-card"
-              cover={
+          <Card
+            key={product.id}
+            hoverable
+            className="product-card"
+            cover={
+              <Link to={`/products/${product.id}`}>
                 <img
                   alt={product.title}
                   src={product.images[0]}
                   className="product-image"
                 />
+              </Link>
+            }
+            actions={[
+              <Button type="primary" onClick={() => addToCart(product)}>
+                Səbətə əlavə et
+              </Button>
+            ]}
+          >
+            <Meta
+              title={product.title}
+              description={
+                <>
+                  <p><strong>Qiymət:</strong> ${product.price}</p>
+                  <p><em>Kateqoriya:</em> {product.category?.name}</p>
+                </>
               }
-            >
-              <h2 className="product-title">{product.title}</h2>
-              <p className="product-price"><strong>Qiymət:</strong> ${product.price}</p>
-              <p className="product-description">{product.description}</p>
-              <p className="product-category"><em>Kateqoriya:</em> {product.category?.name}</p>
-            </Card>
-          </Link>
+            />
+          </Card>
         ))}
       </div>
     </div>

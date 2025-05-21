@@ -13,11 +13,11 @@
 }
 
 .cart-card {
-  width: 300px !important; /* Ant Design Card default width override */
+  width: 150px !important; /* Ant Design Card default width override */
 }
 
 .cart-image {
-  height: 200px;
+  height: 100px;
   object-fit: cover;
 }
 
@@ -34,3 +34,7 @@
   color: #666;
 }
 
+.ant-card-body{
+  overflow:scroll !important;
+  height: 182px !important;
+}

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import "./LoginStyle/Login.css"; 
+import { Button } from 'antd';
+import { PoweroffOutlined } from '@ant-design/icons';
 
 const Login = () => {
   const { login } = useAuth();
@@ -33,8 +35,10 @@ const Login = () => {
 
   return (
     <div className="login-container">
+       <h2>Welcome E-Commerce App</h2>
+      <div className="login-form">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div>
           <label>Username:</label>
           <input
@@ -43,10 +47,11 @@ const Login = () => {
             value={formData.username}
             onChange={handleChange}
             required
+            className="username-input"
           />
         </div>
 
-        <div>
+        <div className="email-container">
           <label>Email:</label>
           <input
             type="email"
@@ -54,13 +59,21 @@ const Login = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            className="email-input"
           />
         </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
+        <Button
+            type="primary"
+            icon={<PoweroffOutlined />}
+            disabled={loading}
+            htmlType="submit" 
+            className="login-button"
+          >
+            {loading ? "Logging in..." : "Login"}
+        </Button>
       </form>
+      </div>
     </div>
   );
 };

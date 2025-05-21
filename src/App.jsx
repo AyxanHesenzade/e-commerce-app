@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { CartProvider } from './context/CartContext.jsx';
 import Login from './pages/Login.jsx';
@@ -10,15 +10,21 @@ import Navbar from './components/Header.jsx';
 import PrivateRoute from './routes/PrivateRoute.jsx';
 
 function App() {
+  const location = useLocation();
+  const hideNavbarRoutes = ['/login'];
+
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
+
   return (
     <AuthProvider>
       <CartProvider>
-        <Navbar />
+        {!shouldHideNavbar && <Navbar />}
+
         <Routes>
           {/* Giriş səhifəsi */}
           <Route path="/login" element={<Login />} />
 
-          {/* Əsas səhifə /products-a yönlənsin */}
+          {/* Əsas səhifə */}
           <Route path="/" element={<Navigate to="/products" />} />
 
           {/* Məhsullar */}

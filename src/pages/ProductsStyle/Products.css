@@ -14,11 +14,12 @@
 }
 
 .product-card {
-  width: 300px !important; /* Ant Design Card default width override */
+  width: 150px !important; /* Ant Design Card default width override */
 }
 
 .product-image {
-  height: 200px;
+  width: 100%;
+  height: 100px;
   object-fit: cover;
 }
 
