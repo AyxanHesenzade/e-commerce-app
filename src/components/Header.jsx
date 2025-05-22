@@ -68,7 +68,7 @@ function Header() {
   };
 
   useEffect(() => {
-    // İstəyə görə: istifadəçi login olduqda aktiv menyu "products" olacaq
+    
     if (!user) setCurrent('products');
   }, [user]);
 
@@ -87,7 +87,7 @@ function Header() {
       allowClear
       enterButton="Axtar"
       size="middle"
-      onSearch={(value) => navigate(`/search?category=${value.toLowerCase()}`)}
+      onSearch={(value) => navigate(`/search?query=${value.toLowerCase()}`)}
       style={{ maxWidth: 300 }}
     />
 

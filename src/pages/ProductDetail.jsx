@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { Card, Button } from 'antd';
 import './ProductDetail.module.css/ProductDetail.css';  
+import {  ShoppingCartOutlined, PoweroffOutlined } from '@ant-design/icons';
+
+
 
 const { Meta } = Card;
 
@@ -10,6 +13,8 @@ function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const { addToCart } = useCart();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetch(`https://api.escuelajs.co/api/v1/products/${id}`)
@@ -22,6 +27,14 @@ function ProductDetail() {
 
   return (
     <div className="productDetailContainer">
+      <div  className='btn-div'>
+        <Button
+          type="primary"
+          icon={<PoweroffOutlined />}
+          onClick={() => navigate('/products')}
+        />
+      </div>
+
       <Card
         hoverable
         className="productCard"
@@ -33,8 +46,8 @@ function ProductDetail() {
           />
         }
         actions={[
-          <Button type="primary" onClick={() => addToCart(product)}>
-            Səbətə əlavə et
+          <Button type="primary" icon={<ShoppingCartOutlined />} onClick={() => addToCart(product)}>
+            Add
           </Button>,
         ]}
       >

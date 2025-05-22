@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Card, Button } from 'antd';
-import { AppstoreOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { useCart } from '../context/CartContext.jsx';
 
 import './ProductsStyle/Products.css';  // CSS faylını import et
@@ -80,8 +80,8 @@ function Products() {
               </Link>
             }
             actions={[
-              <Button type="primary" onClick={() => addToCart(product)}>
-                Səbətə əlavə et
+              <Button type="primary" icon={<ShoppingCartOutlined />} onClick={() => addToCart(product)}>
+                Add
               </Button>
             ]}
           >

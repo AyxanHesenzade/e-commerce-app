@@ -8,6 +8,7 @@ import ProductDetails from './pages/ProductDetail.jsx';
 import Cart from './pages/Cart.jsx';
 import Navbar from './components/Header.jsx';
 import PrivateRoute from './routes/PrivateRoute.jsx';
+import SearchResults from './pages/SearchResults.jsx';
 
 function App() {
   const location = useLocation();
@@ -58,6 +59,16 @@ function App() {
               </PrivateRoute>
             }
  
+          />
+
+
+          <Route
+            path="/search"
+            element={
+              <PrivateRoute>
+                <SearchResults />
+              </PrivateRoute>
+            }
           />
 
         </Routes>

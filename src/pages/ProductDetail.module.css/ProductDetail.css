@@ -21,5 +21,7 @@
 
 .productCard{
   border: 1px solid #4096ff !important;
-  border-radius: 10px; /* İstəsən, radius da ver */
+  border-radius: 10px; 
+  margin-top: 60px;
 }
+

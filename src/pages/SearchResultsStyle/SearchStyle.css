@@ -1,0 +1,23 @@
+.search-container {
+    padding: 10px;
+}
+
+.product-card {
+  border: 1px solid #4096ff !important;
+  border-radius: 10px; /* İstəsən, radius da ver */
+}
+
+
+.products-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.product-image {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
