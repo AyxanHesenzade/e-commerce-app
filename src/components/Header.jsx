@@ -81,6 +81,7 @@ function Header() {
     padding: '10px 20px',
     backgroundColor: '#fff',
     borderBottom: '1px solid #f0f0f0' 
+    
   }}>
     <Search
       placeholder="Məhsul axtar"

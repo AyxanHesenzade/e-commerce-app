@@ -84,6 +84,7 @@ function SearchResults() {
         ) : (
           query.trim() && <p>Heç bir məhsul tapılmadı.</p>
         )}
+        
       </div>
     </div>
   );
