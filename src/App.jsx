@@ -11,6 +11,7 @@ import PrivateRoute from './routes/PrivateRoute.jsx';
 import SearchResults from './pages/SearchResults.jsx';
 import ProductList from './pages/admin/products/ProductList.jsx';
 import AddProduct from './pages/admin/add-product/AddProduct.jsx';
+import Checkout from './pages/Checkout.jsx';
 
 function App() {
   const location = useLocation();
@@ -37,9 +38,7 @@ function App() {
               <PrivateRoute>
                 <Products />
               </PrivateRoute>
-            }
-
-            
+            } 
           />
 
           {/* Məhsul detalları */}
@@ -90,6 +89,17 @@ function App() {
                   </PrivateRoute>
                 }
           />
+          
+          <Route
+                path="/checkout"
+                element={
+                  <PrivateRoute>
+                    <Checkout />
+                  </PrivateRoute>
+                }
+          />
+
+      
 
 
         </Routes>

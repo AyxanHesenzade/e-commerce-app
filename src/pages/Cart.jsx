@@ -1,13 +1,13 @@
 import { useCart } from '../context/CartContext.jsx';
 import { Card, Button } from 'antd';
 import { useNavigate, Link } from 'react-router-dom';
-import { PoweroffOutlined } from '@ant-design/icons';
+import { LeftOutlined, WalletOutlined} from '@ant-design/icons';
 import './CartStyle/Cart.css';
 
 const { Meta } = Card;
 
 function Cart() {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
   const navigate = useNavigate();
 
   const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -21,12 +21,27 @@ function Cart() {
       <div className="btn-div">
         <Button
           type="primary"
-          icon={<PoweroffOutlined />}
+          icon={<LeftOutlined />}
           onClick={() => navigate('/products')}
         />
       </div>
 
       <h2 className="cart-title">Səbət</h2>
+      <br />
+       <h4 className="cart-total-price">Ümumi Qiymət: ${totalPrice.toFixed(2)}</h4>
+
+       <div  className='BuyBtn'>
+
+        <Button
+          type="primary"
+          icon={<WalletOutlined/>}
+          onClick={() => navigate('/checkout')}
+        >
+          Əldə et
+        </Button>
+
+       </div>
+
 
       <div className="cart-items">
         {cart.map((item) => (
@@ -64,7 +79,10 @@ function Cart() {
             />
             <div className="cart-quantity-info">
               <p className="priceP">
-                <strong>Miqdar:</strong> {item.quantity}
+                <strong>Miqdar:</strong>
+                    <Button onClick={() => decreaseQuantity(item.id)}>-</Button>
+                    <span style={{ margin: '0 8px' }}>{item.quantity}</span>
+                    <Button onClick={() => increaseQuantity(item.id)}>+</Button>
               </p>
               <p className="priceP">
                 <strong>Ümumi:</strong> ${(item.price * item.quantity).toFixed(2)}
@@ -74,7 +92,7 @@ function Cart() {
         ))}
       </div>
 
-      <h4 className="cart-total-price">Ümumi Qiymət: ${totalPrice.toFixed(2)}</h4>
+     
     </div>
   );
 }

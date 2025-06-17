@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
-import { Card, Button } from 'antd';
+import { Card, Button, List } from 'antd';
 import './ProductDetail.module.css/ProductDetail.css';  
-import {  ShoppingCartOutlined, PoweroffOutlined } from '@ant-design/icons';
+import {  ShoppingCartOutlined, LeftOutlined } from '@ant-design/icons';
 
 
 
@@ -14,6 +14,7 @@ function ProductDetail() {
   const [product, setProduct] = useState(null);
   const { addToCart } = useCart();
   const navigate = useNavigate();
+  const [recommendedProducts, setRecommendedProducts] = useState([])
 
 
   useEffect(() => {
@@ -23,6 +24,19 @@ function ProductDetail() {
       .catch((err) => console.log("Xəta Baş Verdi :", err));
   }, [id]);
 
+
+  useEffect(() => {
+  if (product && product.category.id) {
+    fetch(`https://api.escuelajs.co/api/v1/categories/${product.category.id}/products`)
+      .then((res) => res.json())
+      .then((data) => {
+        const filtered = data.filter((item) => item.id !== Number(id)).slice(0, 5);
+        setRecommendedProducts(filtered);
+      })
+      .catch((err) => console.log("Xəta:", err));
+     }
+    }, [product, id]);
+
   if (!product) return <p>Yüklənir...</p>;
 
   return (
@@ -30,7 +44,7 @@ function ProductDetail() {
       <div  className='btn-div'>
         <Button
           type="primary"
-          icon={<PoweroffOutlined />}
+          icon={<LeftOutlined />}
           onClick={() => navigate('/products')}
         />
       </div>
@@ -62,6 +76,31 @@ function ProductDetail() {
           }
         />
       </Card>
+
+      <div className="recommended-section">
+
+        <h2>Bunlarda marağınızı çəkə bilər</h2>
+
+        <List
+        grid={{ gutter: 16, column: 4 }}
+        dataSource={recommendedProducts}
+        renderItem={(item) => (
+          <List.Item>
+            <Card
+            hoverable
+            cover={<img alt={item.title} src={item.images[0] || 'https://via.placeholder.com/150'} />}
+            onClick={() => navigate(`/products/${item.id}`)}
+            >
+              <Meta title={item.title} description={`$${item.price}`} />
+          
+            </Card>
+          </List.Item>
+        )}
+         
+        />
+
+
+      </div>
     </div>
   );
 }

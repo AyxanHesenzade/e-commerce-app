@@ -1,0 +1,13 @@
+.card {
+  width: 200px;
+}
+.image {
+  height: 100px;
+  object-fit: cover;
+}
+.list {
+
+  margin-top: 20px;
+  display: flex !important;
+
+}

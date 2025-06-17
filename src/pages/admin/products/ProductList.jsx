@@ -46,7 +46,7 @@ function ProductList() {
       title: 'Əməliyyatlar',
       render: (_, record) => (
         <>
-          <Link to={`/admin/edit/${record.id}`}>
+          <Link to={`/admin/EditProduct/${record.id}`}>
             <Button type="link">Redaktə et</Button>
           </Link>
           <Popconfirm

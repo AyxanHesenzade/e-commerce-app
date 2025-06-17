@@ -10,15 +10,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  margin-top: 20px;
 }
 
 .cart-card {
-  width: 150px !important; /* Ant Design Card default width override */
+  width: 225px !important; /* Ant Design Card default width override */
 }
 
 .cart-image {
-  height: 100px;
+  height: 230px;
   object-fit: cover;
+  width: 100%;
 }
 
 .cart-quantity-info {
@@ -35,11 +37,11 @@
 }
 
 .ant-card-body{
-  overflow:scroll !important;
-  height: 182px !important;
+  height: 300px !important;
+
 }
 
 .product-card {
   border: 1px solid #4096ff !important;
-  border-radius: 10px; /* İstəsən, radius da ver */
+  border-radius: 10px; 
 }

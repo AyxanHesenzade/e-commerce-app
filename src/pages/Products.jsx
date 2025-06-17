@@ -12,7 +12,8 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const { addToCart } = useCart(); // 🛒 Səbətə əlavə funksiyası
+  const { addToCart } = useCart(); 
+  const [sortOption, setSortOption] = useState();
 
   // KATEQORİYALAR
   useEffect(() => {
@@ -22,11 +23,31 @@ function Products() {
       .catch((err) => console.log('Kateqoriya xətası:', err));
   }, []);
 
+
+  //SIRALAMA BUTTONLARI
+
+  useEffect(()=>{
+    let sorted = [...products];
+    if (sortOption === 'price-asc'){
+      sorted.sort((a, b)=> a.price-b.price)
+    } else if (sortOption === 'price-desc'){
+      sorted.sort((a, b)=> b.price-a.price)
+    } else if (sortOption === 'date-newest'){
+      sorted.sort((a, b)=> new Date(b.creationAt)- new Date(a.creationAt))
+    } else if (sortOption === 'date-oldest'){
+      sorted.sort((a, b )=> new Date(a.creationAt)- new Date(b.creationAt))
+    }
+  
+  setProducts(sorted);
+
+  },[sortOption])
+
   // MƏHSULLAR
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
       .then((res) => res.json())
       .then((data) => {
+        console.log(data[0])
         if (selectedCategory === 'all') {
           setProducts(data);
         } else {
@@ -61,10 +82,24 @@ function Products() {
   return (
     <div className="products-container">
       {/* KATEQORİYA MENÜSÜ */}
-      <Menu mode="horizontal" onClick={handleMenuClick} items={menuItems} />
+      <div>
+        <Menu mode="horizontal" onClick={handleMenuClick} items={menuItems} />
+        <div className='sort-option'>
+          <select onChange={(e)=> setSortOption(e.target.value)} >
+            <option value="">Sırala</option>
+            <option value="price-asc">Əvvəlcə ucuz</option>
+            <option value="price-desc">Əvvəlcə bahalı</option>
+            <option value="date-newest">Ən yeni</option>
+            <option value="date-oldest">Ən köhnə</option>
+          </select>
+        </div>
+
+      </div>
+      
 
       {/* MƏHSUL KARTLARI */}
       <div className="products-cards">
+
         {products.map((product) => (
           <Card
             key={product.id}
