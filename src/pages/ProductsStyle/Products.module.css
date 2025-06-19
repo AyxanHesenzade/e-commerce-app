@@ -1,0 +1,58 @@
+.productsContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productsCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.productLink {
+  text-decoration: none;
+}
+
+.productCard {
+  width: 200px !important;
+  border: 1px solid #4096ff !important;
+  border-radius: 10px;
+}
+
+.productImage {
+  width: 100%;
+  height: 200px !important;
+  object-fit: cover;
+}
+
+.priceP {
+  color: #4096ff;
+}
+
+.sortOption {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 5px;
+}
+
+
+/* 🔽 Mobil görünüş üçün uyğunlaşdırma */
+@media (max-width: 768px) {
+  .productsCards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .productCard {
+    width: 90% !important;
+  }
+
+  .sortOption {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}

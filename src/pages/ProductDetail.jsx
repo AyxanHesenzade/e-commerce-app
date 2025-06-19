@@ -25,8 +25,8 @@ function ProductDetail() {
   }, [id]);
 
 
-  useEffect(() => {
-  if (product && product.category.id) {
+useEffect(() => {
+  if (product && product.category?.id) {
     fetch(`https://api.escuelajs.co/api/v1/categories/${product.category.id}/products`)
       .then((res) => res.json())
       .then((data) => {
@@ -34,8 +34,9 @@ function ProductDetail() {
         setRecommendedProducts(filtered);
       })
       .catch((err) => console.log("Xəta:", err));
-     }
-    }, [product, id]);
+  }
+}, [product, id]);
+
 
   if (!product) return <p>Yüklənir...</p>;
 

@@ -4,7 +4,7 @@ import { Menu, Card, Button } from 'antd';
 import { AppstoreOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { useCart } from '../context/CartContext.jsx';
 
-import './ProductsStyle/Products.css';  // CSS faylını import et
+import styles from './ProductsStyle/Products.module.css';
 
 const { Meta } = Card;
 
@@ -15,7 +15,6 @@ function Products() {
   const { addToCart } = useCart(); 
   const [sortOption, setSortOption] = useState();
 
-  // KATEQORİYALAR
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/categories')
       .then((res) => res.json())
@@ -23,31 +22,24 @@ function Products() {
       .catch((err) => console.log('Kateqoriya xətası:', err));
   }, []);
 
-
-  //SIRALAMA BUTTONLARI
-
-  useEffect(()=>{
+  useEffect(() => {
     let sorted = [...products];
-    if (sortOption === 'price-asc'){
-      sorted.sort((a, b)=> a.price-b.price)
-    } else if (sortOption === 'price-desc'){
-      sorted.sort((a, b)=> b.price-a.price)
-    } else if (sortOption === 'date-newest'){
-      sorted.sort((a, b)=> new Date(b.creationAt)- new Date(a.creationAt))
-    } else if (sortOption === 'date-oldest'){
-      sorted.sort((a, b )=> new Date(a.creationAt)- new Date(b.creationAt))
+    if (sortOption === 'price-asc') {
+      sorted.sort((a, b) => a.price - b.price);
+    } else if (sortOption === 'price-desc') {
+      sorted.sort((a, b) => b.price - a.price);
+    } else if (sortOption === 'date-newest') {
+      sorted.sort((a, b) => new Date(b.creationAt) - new Date(a.creationAt));
+    } else if (sortOption === 'date-oldest') {
+      sorted.sort((a, b) => new Date(a.creationAt) - new Date(b.creationAt));
     }
-  
-  setProducts(sorted);
+    setProducts(sorted);
+  }, [sortOption]);
 
-  },[sortOption])
-
-  // MƏHSULLAR
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data[0])
         if (selectedCategory === 'all') {
           setProducts(data);
         } else {
@@ -58,7 +50,6 @@ function Products() {
       .catch((err) => console.log('Məhsul xətası:', err));
   }, [selectedCategory]);
 
-  // MENÜ ÜÇÜN KATEQORİYA ITEMLƏRİ
   const menuItems = [
     {
       key: 'categories',
@@ -71,21 +62,20 @@ function Products() {
     },
   ];
 
-  // MENÜDƏ KATEQORİYA SEÇİLDİKDƏ
   const handleMenuClick = (e) => {
-    const selected = e.key === 'all'
-      ? 'all'
-      : categories.find((cat) => cat !== 'all' && cat.id?.toString() === e.key);
+    const selected =
+      e.key === 'all'
+        ? 'all'
+        : categories.find((cat) => cat !== 'all' && cat.id?.toString() === e.key);
     setSelectedCategory(selected);
   };
 
   return (
-    <div className="products-container">
-      {/* KATEQORİYA MENÜSÜ */}
+    <div className={styles.productsContainer}>
       <div>
         <Menu mode="horizontal" onClick={handleMenuClick} items={menuItems} />
-        <div className='sort-option'>
-          <select onChange={(e)=> setSortOption(e.target.value)} >
+        <div className={styles.sortOption}>
+          <select onChange={(e) => setSortOption(e.target.value)}>
             <option value="">Sırala</option>
             <option value="price-asc">Əvvəlcə ucuz</option>
             <option value="price-desc">Əvvəlcə bahalı</option>
@@ -93,38 +83,38 @@ function Products() {
             <option value="date-oldest">Ən köhnə</option>
           </select>
         </div>
-
       </div>
-      
 
-      {/* MƏHSUL KARTLARI */}
-      <div className="products-cards">
-
+      <div className={styles.productsCards}>
         {products.map((product) => (
           <Card
             key={product.id}
             hoverable
-            className="product-card"
+            className={styles.productCard}
             cover={
-              <Link to={`/products/${product.id}`}>
+              <Link to={`/products/${product.id}`} className={styles.productLink}>
                 <img
                   alt={product.title}
                   src={product.images[0]}
-                  className="product-image"
+                  className={styles.productImage}
                 />
               </Link>
             }
             actions={[
-              <Button type="primary" icon={<ShoppingCartOutlined />} onClick={() => addToCart(product)}>
+              <Button
+                type="primary"
+                icon={<ShoppingCartOutlined />}
+                onClick={() => addToCart(product)}
+              >
                 Add
-              </Button>
+              </Button>,
             ]}
           >
             <Meta
               title={product.title}
               description={
                 <>
-                  <p className="priceP"><strong>Qiymət:</strong> ${product.price}</p>
+                  <p className={styles.priceP}><strong>Qiymət:</strong> ${product.price}</p>
                   <p><em>Kateqoriya:</em> {product.category?.name}</p>
                 </>
               }
